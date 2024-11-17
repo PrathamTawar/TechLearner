@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Details - TechLearners</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'coursedetails.css' %}">
+</head>
+<body>
+    <nav>
+        <a href="/"><h2>TechLearners</h2></a>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/courses/">Courses</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="media-container">
+
+            {% if data.poster_local %}
+                <img src="{{ data.poster_local.url }}" alt="{{ data.course_name }}">
+            {% else %}
+                <img src="{{ data.poster_url }}" alt="Course Poster">
+            {% endif %}
+            
+            <video src="{{data.video.url}}" autoplay loop muted playsinline type="video/mp4"></video>
+        </div>
+        <div class="course-details">
+            <h1>{{data.course_name}}</h1>
+            <p>{{data.description}}</p>
+            <h3>{{data.tutor_name}}</h3>
+            <div id="deets">
+                {% if data.duration_months %}
+                    <p class="duration">{{data.duration_months}} Months</p>
+                {% else %}
+                    <p class="duration">{{data.duration_years}} Years</p>
+                {% endif %}
+                <p class="price">${{data.price}}</p>
+            </div>
+            <button>Enroll Now</button>
+        </div>
+    </main>
+</body>
+</html>

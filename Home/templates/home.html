@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+</head>
+<body>
+    
+    <nav>
+        <a href="/"><h2>TechLearners</h2></a>
+
+        <ul>
+            <li><a href="/"> Home </a></li>
+            <li><a href="/courses/"> Courses </a></li>
+            <li><a href="/admin/"> Admin </a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="hero-text">
+                <h1>Master New Skills with TechLearners</h1>
+                <p>Explore our wide range of tech courses and advance your career today.</p>
+                <a href="/courses/" class="cta-button">Explore Courses</a>
+            </div>
+            <div class="hero-image">
+                <img src="https://www.cypherlearning.com/hubfs/blog/k-20/posts/2022/12/NEO-blog-01_Helping-new-students-thrive-through-online-learning-HEADER.png" alt="Student learning online">
+            </div>
+        </section>
+    
+        <section class="featured-courses">
+            <h2>Featured Courses</h2>
+            <div class="course-grid">
+                <!-- Example course card, repeat for each featured course -->
+                {% for data in courses %}
+                    <div class="course-card">
+                        {% if data.poster_local %}
+                            <img src="{{data.poster_local.url}}" alt="">
+                        {% else %}
+                            <img src="{{data.poster_url}}" alt="">
+                        {% endif %}
+                        <div class="course-info">
+                            <h3>{{data.course_name}}</h3>
+                            <p>{{data.description}}</p> 
+                            <p class="course-price">₹{{data.price}}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+                <!-- More course cards... -->
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>
